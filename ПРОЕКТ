@@ -1,0 +1,81 @@
+add_library("sound")
+A=0
+B=0
+R=1
+F=0
+K=["1.png","2.png","3.png"]
+def setup():
+    global sf
+    size(600,600)
+    Music()
+def draw():
+    global A,B,R,F,K
+    photo = loadImage(K[F])
+    image(photo,0,0)
+    chelik(A,B,R)
+    Music()
+    if keyPressed:
+        if key=='p':
+            R=R+0.005
+        if key=='m':
+            R=R-0.005
+        if key=='1':
+            F=0
+        if key=='2':
+            F=1
+        if key=='3':
+            F=2
+    if mouseButton== LEFT:
+        A=mouseX
+        B=mouseY    
+        
+            
+def keyPressed():
+    global A,B,R
+    if keyCode==RIGHT:
+        A=A+5
+    if keyCode==LEFT:
+        A=A-5
+    if keyCode==DOWN:
+        B=B+5
+    if keyCode==UP:
+        B=B-5
+    
+def chelik(x,y,changeSize):    
+    push()
+    translate(x,y)
+    scale(changeSize)
+
+    strokeWeight(10)
+    stroke(225,0,0)
+    line(50,70,0,150)
+    line(50,70,100,150)
+    stroke(149,85,0)
+    line(50,192,0,250)
+    line(50,192,100,250)
+    
+    stroke(0,0,0)
+    fill(225,0,0)
+    strokeWeight(3)
+    ellipse(50,140,50,120)
+     
+    stroke(255,202,0)
+    strokeWeight(60)
+    point(50,50)
+    
+    stroke(0,0,0)
+    strokeWeight(5)
+    point(36,36)
+    point(66,36)
+    line(36,63,70,63)
+    
+    pop()
+
+def Music():
+    global sf
+    sf=SoundFile(this,"4.mp3")
+    sf.play
+    
+
+   
+    
